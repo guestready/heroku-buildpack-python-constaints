@@ -11,9 +11,14 @@ if [[ -z "$SKIP_PIP_INSTALL" ]]; then
     # and makes them accessible to the pip install process.
     #
     # PIP_EXTRA_INDEX_URL allows for an alternate pypi URL to be used.
+    # PIP_CONSTRAINT allows setting a path to a constaints.txt pip file.
     if [[ -r "$ENV_DIR/PIP_EXTRA_INDEX_URL" ]]; then
         PIP_EXTRA_INDEX_URL="$(cat "$ENV_DIR/PIP_EXTRA_INDEX_URL")"
         export PIP_EXTRA_INDEX_URL
+    fi
+    if [[ -r "$ENV_DIR/PIP_CONSTRAINT" ]]; then
+        PIP_CONSTRAINT="$(cat "$ENV_DIR/PIP_CONSTRAINT")"
+        export PIP_CONSTRAINT
     fi
 
     set +e
